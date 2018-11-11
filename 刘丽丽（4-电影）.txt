@@ -1,0 +1,75 @@
+create table biao(id int primary key auto_increment,movie varchar(11) not null,year varchar(4) not null,director varchar(5) not null,grade int(2) not null);
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> desc biao;
++----------+-------------+------+-----+---------+----------------+
+| Field    | Type        | Null | Key | Default | Extra          |
++----------+-------------+------+-----+---------+----------------+
+| id       | int(11)     | NO   | PRI | NULL    | auto_increment |
+| movie    | varchar(11) | NO   |     | NULL    |                |
+| year     | varchar(4)  | NO   |     | NULL    |                |
+| director | varchar(5)  | NO   |     | NULL    |                |
+| grade    | int(2)      | NO   |     | NULL    |                |
++----------+-------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> insert into biao(movie,year,director,grade) values('one','2018','hu','8'),('two','2017','liuli','9');
+Query OK, 2 rows affected (0.11 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from biao;
++----+-------+------+----------+-------+
+| id | movie | year | director | grade |
++----+-------+------+----------+-------+
+|  1 | one   | 2018 | hu       |     8 |
+|  2 | two   | 2017 | liuli    |     9 |
++----+-------+------+----------+-------+
+2 rows in set (0.00 sec)
+
+mysql> insert into biao(movie,year,director,grade) values('one1','2018','huw','8.1'),('two2','2017','liui','9.2');
+Query OK, 2 rows affected (0.11 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from biao;
++----+-------+------+----------+-------+
+| id | movie | year | director | grade |
++----+-------+------+----------+-------+
+|  1 | one   | 2018 | hu       |     8 |
+|  2 | two   | 2017 | liuli    |     9 |
+|  5 | one1  | 2018 | huw      |     8 |
+|  6 | two2  | 2017 | liui     |     9 |
++----+-------+------+----------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select movie like '%one%' from biao;
++--------------------+
+| movie like '%one%' |
++--------------------+
+|                  1 |
+|                  0 |
+|                  1 |
+|                  0 |
++--------------------+
+4 rows in set (0.00 sec)
+
+mysql> select max(grade) from biao;
++------------+
+| max(grade) |
++------------+
+|          9 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select year where year='2017' from biao;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from biao' at line 1
+mysql> select year from biao where year='2017';
++------+
+| year |
++------+
+| 2017 |
+| 2017 |
++------+
+2 rows in set (0.00 sec)
+
+mysql>
+mysql>
