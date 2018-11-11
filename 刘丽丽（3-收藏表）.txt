@@ -1,0 +1,57 @@
+mysql> create table collect(yonghu varchar(11) not null unique,id int primary key auto_increment,sthname varchar(11) not null);
+Query OK, 0 rows affected (0.13 sec)
+
+mysql> select * from collect;
+Empty set (0.00 sec)
+
+mysql> desc collect;
++---------+-------------+------+-----+---------+----------------+
+| Field   | Type        | Null | Key | Default | Extra          |
++---------+-------------+------+-----+---------+----------------+
+| yonghu  | varchar(11) | NO   | UNI | NULL    |                |
+| id      | int(11)     | NO   | PRI | NULL    | auto_increment |
+| sthname | varchar(11) | NO   |     | NULL    |                |
++---------+-------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> alter table collect add collection set ('yes','no');
+Query OK, 0 rows affected (0.13 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from collect;
+Empty set (0.00 sec)
+
+mysql> desc collect;
++------------+-----------------+------+-----+---------+----------------+
+| Field      | Type            | Null | Key | Default | Extra          |
++------------+-----------------+------+-----+---------+----------------+
+| yonghu     | varchar(11)     | NO   | UNI | NULL    |                |
+| id         | int(11)         | NO   | PRI | NULL    | auto_increment |
+| sthname    | varchar(11)     | NO   |     | NULL    |                |
+| collection | set('yes','no') | YES  |     | NULL    |                |
++------------+-----------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> insert into collect(yonghu,sthname,collection) values('usterid','xie','yes'),(' ','bao','no')
+    -> ;
+Query OK, 2 rows affected (0.03 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from collect;
++---------+----+---------+------------+
+| yonghu  | id | sthname | collection |
++---------+----+---------+------------+
+| usterid |  1 | xie     | yes        |
+|         |  2 | bao     | no         |
++---------+----+---------+------------+
+2 rows in set (0.01 sec)
+
+mysql> select * from collect where sthname='xie';
++---------+----+---------+------------+
+| yonghu  | id | sthname | collection |
++---------+----+---------+------------+
+| usterid |  1 | xie     | yes        |
++---------+----+---------+------------+
+1 row in set (0.00 sec)
+
+mysql>
