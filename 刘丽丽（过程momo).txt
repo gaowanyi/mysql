@@ -1,0 +1,35 @@
+use shopping;
+
+-- drop table if exists momo;
+
+-- create table momo(momo_id int primary key not null auto_increment,
+-- momo_name varchar(13) not null,
+
+-- momo_gender varchar(1) not null,
+
+-- phone int(11) not null,
+
+-- liker_id varchar(11) not null,
+-- liker_name varchar(13) not null
+
+-- )engine=innodb default charset=utf8;
+
+
+-- insert into momo(momo_name,momo_gender,phone,liker_id,liker_name) 
+
+-- values('liu','0',123,'111','gao'),('lili','1',678,'222','wanyi');
+
+-- select momo_name from momo where momo_name='liu';
+
+drop procedure if exists momo_pro;
+
+delimiter $$
+create procedure momo_pro(in momoname varchar(13))
+reads sql data
+begin
+select * from momo where momo_name=momoname;
+
+end $$
+delimiter;
+
+call momo_pro("liu");
